@@ -5,14 +5,19 @@
         <h1 class="m-4 text-light">Cults Near You</h1>
       </div>
     </section>
+
+    <section class="row">
+      {{ cults }}
+    </section>
   </div>
 </template>
 
 
 <script>
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { cultsService } from '../services/CultsService.js';
 import Pop from '../utils/Pop.js';
+import { AppState } from '../AppState.js';
 
 export default {
   setup() {
@@ -26,7 +31,9 @@ export default {
 
     onMounted(getCults)
 
-    return {}
+    return {
+      cults: computed(() => AppState.cults)
+    }
   }
 }
 </script>
