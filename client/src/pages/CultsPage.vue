@@ -7,7 +7,9 @@
     </section>
 
     <section class="row">
-      {{ cults }}
+      <div v-for="cult in cults" :key="cult.id" class="col-7">
+        {{ cult.name }}
+      </div>
     </section>
   </div>
 </template>
