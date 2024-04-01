@@ -4,6 +4,10 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class CultsService {
+  async getCultById(cultId) {
+    const response = await api.get(`api/cults/${cultId}`)
+    logger.log('GOT CULT BY ID', response.data)
+  }
   async getCults() {
     const response = await api.get('api/cults')
     logger.log('GOT CULTS', response.data)
