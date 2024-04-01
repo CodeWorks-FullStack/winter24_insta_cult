@@ -1,4 +1,5 @@
 
+
 namespace winter24_insta_cult.Services;
 
 public class CultsService
@@ -14,5 +15,11 @@ public class CultsService
   {
     Cult cult = _repository.Create(cultData);
     return cult;
+  }
+
+  internal List<Cult> GetCults()
+  {
+    List<Cult> cults = _repository.GetAll();
+    return cults;
   }
 }

@@ -23,7 +23,7 @@ public class CultsRepository : IRepository<Cult>
     JOIN accounts account ON account.id = cult.leaderId
     WHERE cult.id = LAST_INSERT_ID();";
 
-    Cult cult = _db.Query<Cult, Account, Cult>(sql, (cult, profile) =>
+    Cult cult = _db.Query<Cult, Profile, Cult>(sql, (cult, profile) =>
     {
       cult.Leader = profile;
       return cult;
@@ -38,7 +38,20 @@ public class CultsRepository : IRepository<Cult>
 
   public List<Cult> GetAll()
   {
-    throw new NotImplementedException();
+    string sql = @"
+    SELECT
+    cult.*,
+    account.*
+    FROM cults cult
+    JOIN accounts account ON cult.leaderId = account.id;";
+
+    List<Cult> cults = _db.Query<Cult, Profile, Cult>(sql, (cult, profile) =>
+    {
+      cult.Leader = profile;
+      return cult;
+    }).ToList();
+
+    return cults;
   }
 
   public Cult GetById(int id)
