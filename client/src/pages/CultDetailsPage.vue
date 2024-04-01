@@ -8,7 +8,9 @@
 
     <section v-else class="row">
       <div class="col-12">
-        <h1>Loading... <i class="mdi mdi-loading mdi-spin"></i></h1>
+        <h1>Loading...
+          <i class="mdi mdi-loading mdi-spin"></i>
+        </h1>
       </div>
     </section>
   </div>
@@ -19,7 +21,7 @@
 import { useRoute } from 'vue-router';
 import Pop from '../utils/Pop.js';
 import { cultsService } from '../services/CultsService.js';
-import { computed, onMounted, watch } from 'vue';
+import { computed, watch } from 'vue';
 import { AppState } from '../AppState.js';
 
 export default {
