@@ -6,4 +6,5 @@ public class Cult : RepoItem
   public string Description { get; set; }
   public string CoverImg { get; set; }
   public string LeaderId { get; set; }
+  public Account Leader { get; set; }
 }

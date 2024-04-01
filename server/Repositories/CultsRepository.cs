@@ -1,5 +1,3 @@
-
-
 namespace winter24_insta_cult.Repositories;
 
 public class CultsRepository : IRepository<Cult>
@@ -13,7 +11,24 @@ public class CultsRepository : IRepository<Cult>
 
   public Cult Create(Cult data)
   {
-    throw new NotImplementedException();
+    string sql = @"
+    INSERT INTO
+    cults(name, description, leaderId, coverImg)
+    VALUES(@Name, @Description, @LeaderId, @CoverImg);
+    
+    SELECT
+    cult.*,
+    account.*
+    FROM cults cult
+    JOIN accounts account ON account.id = cult.leaderId
+    WHERE cult.id = LAST_INSERT_ID();";
+
+    Cult cult = _db.Query<Cult, Account, Cult>(sql, (cult, profile) =>
+    {
+      cult.Leader = profile;
+      return cult;
+    }, data).FirstOrDefault();
+    return cult;
   }
 
   public void Destroy(int id)
