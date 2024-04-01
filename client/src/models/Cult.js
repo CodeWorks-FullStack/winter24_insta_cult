@@ -1,5 +1,5 @@
-import { Account } from "./Account.js";
 import { DatabaseItem } from "./DatabaseItem.js";
+import { Profile } from "./Profile.js";
 
 export class Cult extends DatabaseItem {
   constructor(data) {
@@ -8,6 +8,6 @@ export class Cult extends DatabaseItem {
     this.description = data.description
     this.coverImg = data.coverImg
     this.leaderId = data.leaderId
-    this.leader = new Account(data.leader)
+    this.leader = new Profile(data.leader)
   }
 }
