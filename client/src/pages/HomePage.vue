@@ -1,12 +1,16 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 card align-items-center shadow rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
-    </div>
+  <div class="container-fluid">
+    <section class="row w-100">
+      <div class="col-12">
+        <div class="d-flex justify-content-center">
+          <router-link to="cults">
+            <button class="btn btn-danger me-3">Join A Cult?</button>
+          </router-link>
+
+          <button class="btn btn-danger">Start A Cult?</button>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -14,30 +18,17 @@
 export default {
   setup() {
     return {
-      
+
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-
-  .home-card {
-    width: clamp(500px, 50vw, 100%);
-
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
+.container-fluid {
+  min-height: 90dvh;
+  background-image: url(https://images.unsplash.com/photo-1534269222346-5a896154c41d?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  display: flex;
+  align-items: center;
 }
 </style>
