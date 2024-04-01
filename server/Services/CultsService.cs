@@ -1,5 +1,3 @@
-
-
 namespace winter24_insta_cult.Services;
 
 public class CultsService
@@ -14,6 +12,15 @@ public class CultsService
   internal Cult CreateCult(Cult cultData)
   {
     Cult cult = _repository.Create(cultData);
+    return cult;
+  }
+
+  internal Cult GetCultById(int cultId)
+  {
+    Cult cult = _repository.GetById(cultId);
+
+    if (cult == null) throw new Exception($"Invalid id: {cultId}");
+
     return cult;
   }
 

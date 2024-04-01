@@ -56,7 +56,21 @@ public class CultsRepository : IRepository<Cult>
 
   public Cult GetById(int id)
   {
-    throw new NotImplementedException();
+    string sql = @"
+    SELECT
+    cult.*,
+    account.*
+    FROM cults cult 
+    JOIN accounts account ON account.id = cult.leaderId
+    WHERE cult.id = @id;";
+
+    Cult cult = _db.Query<Cult, Profile, Cult>(sql, (cult, profile) =>
+    {
+      cult.Leader = profile;
+      return cult;
+    }, new { id }).FirstOrDefault();
+
+    return cult;
   }
 
   public Cult Update(Cult data)
