@@ -1,5 +1,17 @@
 <template>
-  <h1>CULT DETAILS</h1>
+  <div class="container-fluid">
+    <section v-if="cult" class="row">
+      <div class="col-12">
+        <h1>{{ cult.name }}</h1>
+      </div>
+    </section>
+
+    <section v-else class="row">
+      <div class="col-12">
+        <h1>Loading... <i class="mdi mdi-loading mdi-spin"></i></h1>
+      </div>
+    </section>
+  </div>
 </template>
 
 
@@ -7,7 +19,8 @@
 import { useRoute } from 'vue-router';
 import Pop from '../utils/Pop.js';
 import { cultsService } from '../services/CultsService.js';
-import { onMounted, watch } from 'vue';
+import { computed, onMounted, watch } from 'vue';
+import { AppState } from '../AppState.js';
 
 export default {
   setup() {
@@ -26,7 +39,9 @@ export default {
       getCultById(route.params.cultId)
     }, { immediate: true })
 
-    return {}
+    return {
+      cult: computed(() => AppState.activeCult)
+    }
   }
 }
 </script>

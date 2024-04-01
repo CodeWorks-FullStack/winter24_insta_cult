@@ -9,5 +9,8 @@ export const AppState = reactive({
   account: {},
 
   /** @type {import('./models/Cult.js').Cult[]} */
-  cults: []
+  cults: [],
+
+  /** @type {import('./models/Cult.js').Cult} */
+  activeCult: null
 })
