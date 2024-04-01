@@ -10,9 +10,11 @@
       <!-- <p>{{ cult.description.split(' ').slice(0, 6).join(' ') }}...</p> -->
       <p>{{ cult.description.substring(0, 30) }}...</p>
       <div class="text-end">
-        <button class="btn btn-danger">
-          See More
-        </button>
+        <router-link :to="{ name: 'Cult Details', params: { cultId: cult.id } }">
+          <button class="btn btn-danger">
+            See More
+          </button>
+        </router-link>
       </div>
     </div>
   </div>

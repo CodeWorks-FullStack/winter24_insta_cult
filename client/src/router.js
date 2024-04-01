@@ -26,6 +26,11 @@ const routes = [
     path: '/cults',
     name: "Cults",
     component: loadPage('CultsPage')
+  },
+  {
+    path: '/cults/:cultId',
+    name: "Cult Details",
+    component: loadPage('CultDetailsPage')
   }
 ]
 
