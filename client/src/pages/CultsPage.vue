@@ -7,7 +7,7 @@
     </section>
 
     <section class="row justify-content-center">
-      <div v-for="cult in cults" :key="cult.id" class="col-7">
+      <div v-for="cult in cults" :key="cult.id" class="col-12 col-md-7 mb-4">
         <CultCard :cult="cult" />
       </div>
     </section>
