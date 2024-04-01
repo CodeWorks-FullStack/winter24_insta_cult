@@ -2,11 +2,11 @@ public interface IRepository<T>
 {
   public List<T> GetAll();
 
-  public T GetById();
+  public T GetById(int id);
 
-  public T Create();
+  public T Create(T data);
 
-  public T Update();
+  public T Update(T data);
 
-  public void Destroy();
+  public void Destroy(int id);
 }
