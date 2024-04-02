@@ -3,22 +3,30 @@
     <section class="row w-100">
       <div class="col-12">
         <div class="d-flex justify-content-center">
+
           <router-link to="cults">
             <button class="btn btn-danger me-3">Join A Cult?</button>
           </router-link>
 
-          <button class="btn btn-danger">Start A Cult?</button>
+          <button v-if="account.id" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#createCultModal">
+            Start A Cult?
+          </button>
         </div>
       </div>
     </section>
   </div>
+
+  <ModalComponent />
 </template>
 
 <script>
+import { computed } from 'vue';
+import { AppState } from '../AppState.js';
+
 export default {
   setup() {
     return {
-
+      account: computed(() => AppState.account)
     }
   }
 }
