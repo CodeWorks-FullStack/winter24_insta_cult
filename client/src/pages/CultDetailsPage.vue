@@ -4,7 +4,7 @@
       <div class="col-12">
         <h1>{{ cult.name }}</h1>
         <div>
-          <button v-if="account.id" class="btn btn-danger">Join Cult</button>
+          <button @click="createCultMember(cult.id)" v-if="account.id" class="btn btn-danger">Join Cult</button>
         </div>
       </div>
     </section>
@@ -49,6 +49,7 @@ import { cultsService } from '../services/CultsService.js';
 import { cultMembersService } from '../services/CultMembersService.js';
 import { computed, watch } from 'vue';
 import { AppState } from '../AppState.js';
+import { logger } from '../utils/Logger.js';
 
 export default {
   setup() {
@@ -81,7 +82,16 @@ export default {
       cult: computed(() => AppState.activeCult),
       cultBg: computed(() => `url(${AppState.activeCult?.coverImg})`),
       account: computed(() => AppState.account),
-      cultists: computed(() => AppState.cultists)
+      cultists: computed(() => AppState.cultists),
+
+      async createCultMember(cultId) {
+        try {
+          await cultMembersService.createCultMember(cultId)
+        }
+        catch (error) {
+          Pop.error(error);
+        }
+      }
     }
   }
 }
