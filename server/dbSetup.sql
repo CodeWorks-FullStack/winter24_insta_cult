@@ -32,3 +32,11 @@ CREATE TABLE
     FOREIGN KEY (accountId) REFERENCES accounts (id) ON DELETE CASCADE,
     UNIQUE (cultId, accountId)
   )
+SELECT
+  cultMember.*,
+  account.*
+FROM
+  cultMembers cultMember
+  JOIN accounts account ON cultMember.accountId = account.id
+WHERE
+  cultMember.id = 1;

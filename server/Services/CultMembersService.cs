@@ -1,3 +1,4 @@
+
 namespace winter24_insta_cult.Services;
 
 public class CultMembersService
@@ -7,5 +8,11 @@ public class CultMembersService
   public CultMembersService(CultMembersRepository cultMembersRepository)
   {
     _cultMembersRepository = cultMembersRepository;
+  }
+
+  internal Cultist CreateCultMember(CultMember cultMemberData)
+  {
+    Cultist cultMember = _cultMembersRepository.CreateCultMember(cultMemberData);
+    return cultMember;
   }
 }
