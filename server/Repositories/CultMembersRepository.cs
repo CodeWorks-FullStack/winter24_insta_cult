@@ -1,4 +1,5 @@
 
+
 namespace winter24_insta_cult.Repositories;
 
 public class CultMembersRepository
@@ -30,5 +31,24 @@ public class CultMembersRepository
       return cultist;
     }, cultMemberData).FirstOrDefault();
     return cultMember;
+  }
+
+  internal List<Cultist> GetCultistsByCultId(int cultId)
+  {
+    string sql = @"
+    SELECT
+    cultMember.*,
+    account.*
+    FROM cultMembers cultMember
+    JOIN accounts account ON cultMember.accountId = account.id
+    WHERE cultMember.cultId = @cultId;";
+
+    List<Cultist> cultists = _db.Query<CultMember, Cultist, Cultist>(sql, (cultMember, cultist) =>
+    {
+      cultist.CultMemberId = cultMember.Id;
+      return cultist;
+    }, new { cultId }).ToList();
+
+    return cultists;
   }
 }
