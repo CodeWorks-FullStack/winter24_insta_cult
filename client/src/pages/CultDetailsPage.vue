@@ -4,7 +4,9 @@
       <div class="col-12">
         <h1>{{ cult.name }}</h1>
         <div>
-          <button @click="createCultMember(cult.id)" v-if="account.id" class="btn btn-danger">Join Cult</button>
+          <button @click="createCultMember(cult.id)" v-if="account.id && !inCult" class="btn btn-danger">
+            Join Cult
+          </button>
         </div>
       </div>
     </section>
@@ -83,6 +85,7 @@ export default {
       cultBg: computed(() => `url(${AppState.activeCult?.coverImg})`),
       account: computed(() => AppState.account),
       cultists: computed(() => AppState.cultists),
+      inCult: computed(() => AppState.cultists.some(cultist => cultist.id == AppState.account.id)),
 
       async createCultMember(cultId) {
         try {
