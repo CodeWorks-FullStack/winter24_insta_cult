@@ -1,6 +1,3 @@
-
-
-
 namespace winter24_insta_cult.Services;
 
 public class CultMembersService
@@ -31,6 +28,9 @@ public class CultMembersService
 
   internal string ExcommunicateCultMember(int cultMemberId, string userId)
   {
+    // NOTE only the leader of the cult can excommunicate a member
+    // REVIEW might not be a great reference for most deletes, but having services talk to each other can be helpful (maybe you could check to make sure only the creator of a recipe can add ingredients!)
+
     CultMember cultMember = GetCultMemberById(cultMemberId);
 
     Cult cult = _cultsService.GetCultById(cultMember.CultId);

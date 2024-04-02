@@ -25,6 +25,7 @@ public class CultsRepository : IRepository<Cult> // implements interface and sup
     JOIN accounts account ON account.id = cult.leaderId
     WHERE cult.id = LAST_INSERT_ID();";
 
+    // NOTE Profile class does not include email from sql table
     Cult cult = _db.Query<Cult, Profile, Cult>(sql, (cult, profile) =>
     {
       cult.Leader = profile;
