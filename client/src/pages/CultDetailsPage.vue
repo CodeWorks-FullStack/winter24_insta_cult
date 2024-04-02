@@ -71,7 +71,7 @@ export default {
 
     async function getCultistsbyCultId(cultId) {
       try {
-        await cultMembersService.getCultistsbyCultId(cultId)
+        await cultMembersService.getCultistsByCultId(cultId)
       }
       catch (error) {
         Pop.error(error);

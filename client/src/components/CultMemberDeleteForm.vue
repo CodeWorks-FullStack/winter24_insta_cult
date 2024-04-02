@@ -4,6 +4,7 @@
     <select id="cultMemberId" v-model="editableCultMemberId" class="form-select" aria-label="Default select example"
       required>
       <option selected value="0" disabled>Open this select menu</option>
+      <!-- NOTE gives an option for each cultist in our appstate. The name shows up in the option, but their cultMemberId is stored in the v-modeled value-->
       <option v-for="cultist in cultists" :key="cultist.id" :value="cultist.cultMemberId">
         {{ cultist.name }}
       </option>

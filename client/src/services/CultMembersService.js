@@ -12,7 +12,7 @@ class CultMembersService {
     // AppState.cultists.push(new Cultist(response.data))
   }
 
-  async getCultistsbyCultId(cultId) {
+  async getCultistsByCultId(cultId) {
     const response = await api.get(`api/cults/${cultId}/cultMembers`)
     logger.log('GOT CULTISTS', response.data)
     AppState.cultists = response.data.map(pojo => new Cultist(pojo))
