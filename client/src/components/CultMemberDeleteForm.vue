@@ -9,7 +9,9 @@
       </option>
     </select>
     <div>
-      <button class="btn btn-danger" type="submit" :disabled="editableCultMemberId == 0">Excommunicate</button>
+      <button class="btn btn-danger" type="submit" :disabled="editableCultMemberId == 0">
+        Excommunicate
+      </button>
     </div>
   </form>
 </template>

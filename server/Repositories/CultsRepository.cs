@@ -1,6 +1,8 @@
+using winter24_insta_cult.Interfaces;
+
 namespace winter24_insta_cult.Repositories;
 
-public class CultsRepository : IRepository<Cult>
+public class CultsRepository : IRepository<Cult> // implements interface and supplies type for interface
 {
   private readonly IDbConnection _db;
 

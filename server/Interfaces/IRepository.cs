@@ -1,4 +1,7 @@
-public interface IRepository<T>
+namespace winter24_insta_cult.Interfaces;
+
+// NOTE an interface is a contract that a class must follow when implementing. Any class that implements this interface must supprt these methods and define them
+public interface IRepository<T> // T denotes a type that will be supplied when implementing the interface
 {
   public List<T> GetAll();
 

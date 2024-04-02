@@ -6,7 +6,6 @@ public class CultsController : ControllerBase
 {
   private readonly CultsService _cultsService;
   private readonly Auth0Provider _auth0Provider;
-
   private readonly CultMembersService _cultMembersService;
 
   public CultsController(CultsService cultsService, Auth0Provider auth0Provider, CultMembersService cultMembersService)
