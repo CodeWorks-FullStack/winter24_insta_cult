@@ -30,6 +30,22 @@ public class CultMembersController : ControllerBase
     }
   }
 
+  [HttpDelete("{cultMemberId}")]
+  [Authorize]
+  public async Task<ActionResult<string>> ExcommunicateCultMember(int cultMemberId)
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      string message = _cultMembersService.ExcommunicateCultMember(cultMemberId, userInfo.Id);
+      return Ok(message);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
 
 
 }
