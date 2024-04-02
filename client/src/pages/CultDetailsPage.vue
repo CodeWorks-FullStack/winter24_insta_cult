@@ -1,12 +1,33 @@
 <template>
-  <div class="container-fluid">
-    <section v-if="cult" class="row">
+  <div v-if="cult" class="container-fluid">
+    <section class="row cult-bg align-items-center">
       <div class="col-12">
         <h1>{{ cult.name }}</h1>
+        <div>
+          <button v-if="account.id" class="btn btn-danger">Join Cult</button>
+        </div>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-md-6 p-4">
+        <p>{{ cult.description }}</p>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-4">
+          <h2>{{ cult.leader.name }}</h2>
+          <img :src="cult.leader.picture" :alt="cult.leader.name" class="leader round-picture">
+        </div>
+
+        <div>
+          <h3>Members</h3>
+        </div>
       </div>
     </section>
 
-    <section v-else class="row">
+  </div>
+
+  <div v-else class="container-fluid">
+    <section class="row">
       <div class="col-12">
         <h1>Loading...
           <i class="mdi mdi-loading mdi-spin"></i>
@@ -42,11 +63,38 @@ export default {
     }, { immediate: true })
 
     return {
-      cult: computed(() => AppState.activeCult)
+      cult: computed(() => AppState.activeCult),
+      cultBg: computed(() => `url(${AppState.activeCult?.coverImg})`),
+      account: computed(() => AppState.account)
     }
   }
 }
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.cult-bg {
+  min-height: 55vh;
+  background-size: cover;
+  background-position: center;
+  background-image:
+    linear-gradient(black, black),
+    v-bind(cultBg);
+  background-blend-mode: saturation;
+  border-bottom: .5em solid black;
+}
+
+h1 {
+  color: red;
+  text-shadow: 0 0 10px whitesmoke;
+}
+
+.round-picture {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.leader {
+  height: 18vh;
+}
+</style>
