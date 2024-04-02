@@ -12,7 +12,7 @@
       <div class="col-md-6 p-4">
         <p>{{ cult.description }}</p>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 p-4">
         <div class="mb-4">
           <h2>{{ cult.leader.name }}</h2>
           <img :src="cult.leader.picture" :alt="cult.leader.name" class="leader round-picture">
@@ -21,7 +21,8 @@
         <div>
           <h3>Members</h3>
           <div>
-            {{ cultists }}
+            <img v-for="cultist in cultists" :key="cultist.id" :src="cultist.picture" :alt="cultist.name"
+              class="round-picture cultist" :title="cultist.name">
           </div>
         </div>
       </div>
@@ -111,5 +112,9 @@ h1 {
 
 .leader {
   height: 18vh;
+}
+
+.cultist {
+  height: 12vh;
 }
 </style>
