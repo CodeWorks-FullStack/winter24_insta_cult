@@ -17,6 +17,14 @@ class CultMembersService {
     logger.log('GOT CULTISTS', response.data)
     AppState.cultists = response.data.map(pojo => new Cultist(pojo))
   }
+
+  async destroyCultMember(cultMemberId) {
+    const response = await api.delete(`api/cultMembers/${cultMemberId}`)
+    logger.log('DESTROYED CULT MEMBER', response.data)
+    const index = AppState.cultists.findIndex(cultist => cultist.cultMemberId == cultMemberId)
+    if (index == -1) throw new Error("Find index did not work, dawg")
+    AppState.cultists.splice(index, 1)
+  }
 }
 
 export const cultMembersService = new CultMembersService()

@@ -13,6 +13,9 @@
     <section class="row">
       <div class="col-md-6 p-4">
         <p>{{ cult.description }}</p>
+        <div v-if="cult.leaderId == account.id">
+          <CultMemberDeleteForm />
+        </div>
       </div>
       <div class="col-md-6 p-4">
         <div class="mb-4">
