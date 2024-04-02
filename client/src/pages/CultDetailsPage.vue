@@ -42,6 +42,7 @@
 import { useRoute } from 'vue-router';
 import Pop from '../utils/Pop.js';
 import { cultsService } from '../services/CultsService.js';
+import { cultMembersService } from '../services/CultMembersService.js';
 import { computed, watch } from 'vue';
 import { AppState } from '../AppState.js';
 
@@ -58,8 +59,18 @@ export default {
       }
     }
 
+    async function getCultistsbyCultId(cultId) {
+      try {
+        await cultMembersService.getCultistsbyCultId(cultId)
+      }
+      catch (error) {
+        Pop.error(error);
+      }
+    }
+
     watch(() => route.params.cultId, () => {
       getCultById(route.params.cultId)
+      getCultistsbyCultId(route.params.cultId)
     }, { immediate: true })
 
     return {
