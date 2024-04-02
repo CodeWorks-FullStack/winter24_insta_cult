@@ -20,6 +20,9 @@
 
         <div>
           <h3>Members</h3>
+          <div>
+            {{ cultists }}
+          </div>
         </div>
       </div>
     </section>
@@ -76,7 +79,8 @@ export default {
     return {
       cult: computed(() => AppState.activeCult),
       cultBg: computed(() => `url(${AppState.activeCult?.coverImg})`),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      cultists: computed(() => AppState.cultists)
     }
   }
 }
