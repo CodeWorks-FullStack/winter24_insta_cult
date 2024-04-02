@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="createCult()">
     <div class="mb-3">
       <label for="name" class="form-label">Cult Name</label>
       <input v-model="editableCultData.name" type="text" class="form-control" id="name" placeholder="Cult Name..."
@@ -19,7 +19,7 @@
     </div>
 
     <div class="text-end">
-      <button class="btn btn-danger">Submit</button>
+      <button class="btn btn-danger" type="submit">Submit</button>
     </div>
 
   </form>
@@ -28,11 +28,25 @@
 
 <script>
 import { ref } from 'vue'
+import Pop from '../utils/Pop.js'
+import { cultsService } from '../services/CultsService.js'
+import { Modal } from 'bootstrap'
 export default {
   setup() {
     const editableCultData = ref({ name: '', description: '', coverImg: '' })
     return {
-      editableCultData
+      editableCultData,
+      async createCult() {
+        try {
+          const cult = await cultsService.createCult(editableCultData.value)
+          editableCultData.value = { name: '', description: '', coverImg: '' }
+          Modal.getOrCreateInstance('#createCultModal').hide()
+          Pop.success(`${cult.name} has been started, go recruit some members!`)
+        }
+        catch (error) {
+          Pop.error(error);
+        }
+      }
     }
   }
 }

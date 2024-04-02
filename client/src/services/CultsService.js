@@ -4,6 +4,12 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class CultsService {
+  async createCult(cultData) {
+    const response = await api.post('api/cults', cultData)
+    logger.log('CREATED CULT', response.data)
+    const newCult = new Cult(response.data)
+    return newCult
+  }
   async getCultById(cultId) {
     const response = await api.get(`api/cults/${cultId}`)
     logger.log('GOT CULT BY ID', response.data)
